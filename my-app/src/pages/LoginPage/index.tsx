@@ -1,6 +1,6 @@
 import { Footer } from "../../components/Footer"
 import { Header } from "../../components/Header"
-import { useContext } from "react"
+import { useContext, useEffect } from "react"
 import { useForm } from "react-hook-form"
 import { UserContext } from "../../providers/UserContext"
 import { LoginSchema, TLoginFormValue } from "../../schema/loginSchema"
@@ -15,6 +15,13 @@ export const LoginPage = () => {
     const  {register, handleSubmit, formState: {errors}} = useForm<TLoginFormValue>({
         resolver: zodResolver(LoginSchema)
     })
+
+    useEffect(() => {
+        const token = localStorage.getItem("@TOKEN")
+        if(token){
+            navigate("/dashboard")
+        }
+    },[])
 
     const submit = (data: TLoginFormValue) => {
         loginSubmit(data)
