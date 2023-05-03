@@ -20,6 +20,7 @@ export const LoginPage = () => {
     }
 
     return(
+
         <div className="bodyLoginPage">
             <h2 className="loginTitle">Login</h2>
             <form onSubmit={handleSubmit(submit)} className="formContainer">
