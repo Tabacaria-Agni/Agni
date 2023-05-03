@@ -1,5 +1,3 @@
-import { Footer } from "../../components/Footer"
-import { Header } from "../../components/Header"
 import { useContext, useEffect } from "react"
 import { useForm } from "react-hook-form"
 import { UserContext } from "../../providers/UserContext"
@@ -8,6 +6,9 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useNavigate } from "react-router-dom";
+import { Header } from "../../components/Header";
+import { Footer } from "../../components/Footer";
+import { StyledLoginPage } from "./style";
 
 export const LoginPage = () => {
     const {loginSubmit} = useContext(UserContext)
@@ -28,9 +29,10 @@ export const LoginPage = () => {
     }
 
     return(
+
         <>
             <Header />
-                <div className="bodyLoginPage">
+                <StyledLoginPage>
                     <h2 className="loginTitle">Login</h2>
                     <form onSubmit={handleSubmit(submit)} className="formContainer">
                         <div className="divInputLogin">
@@ -48,8 +50,9 @@ export const LoginPage = () => {
                         
                     </form>
                     <ToastContainer theme="dark" />
-                </div>
+                </StyledLoginPage>
             <Footer />
         </>
+
     )
 }
