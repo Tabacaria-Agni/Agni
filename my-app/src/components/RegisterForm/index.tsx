@@ -4,6 +4,8 @@ import { zodResolver } from "@hookform/resolvers/zod"
 
 import { StyledRegisterForm } from "./style"
 import { registerFormSchema, TRegisterValues } from "./registerFormSchema"
+import { useContext } from "react"
+import { UserContext } from "../../providers/UserContext"
 
 interface iRegisterData{
     name: string
@@ -18,8 +20,10 @@ export const RegisterForm = () =>{
         resolver: zodResolver(registerFormSchema)
     })
 
-    const submit: SubmitHandler<TRegisterValues> = (data) => {
-        console.log(data)
+    const {registerSubmit} = useContext(UserContext)
+
+    const submit = (data: TRegisterValues) => {
+        registerSubmit(data)
     }
 
 
@@ -30,20 +34,20 @@ export const RegisterForm = () =>{
                 <Link to="/">Voltar</Link>
             </div>
             <form onSubmit={handleSubmit(submit)}>
-                {/* <label htmlFor="name">Nome</label>
-                <input placeholder="Insira seu nome" name="name" type="text" {...register("name")} />
+                <label htmlFor="name">Nome</label>
+                <input placeholder="Insira seu nome" type="text" {...register("name")} />
 
                 <label htmlFor="email">E-mail</label>
-                <input placeholder="Insira seu email" name="email" type="text" {...register("email")} />
+                <input placeholder="Insira seu email" type="text" {...register("email")} />
 
                 <label htmlFor="date">Data de nascimento</label>
-                <input name="date" type="date" {...register("date")} />
+                <input type="date" {...register("date")} />
 
                 <label htmlFor="password">Senha</label>
-                <input placeholder="Insira sua senha" name="password" type="password" {...register("password")} />
+                <input placeholder="Insira sua senha" type="password" {...register("password")} />
 
                 <label htmlFor="confirm">Confirme sua senha</label>
-                <input placeholder="Confirme sua senha" name="confirm" type="password" {...register("confirm")} /> */}
+                <input placeholder="Confirme sua senha" type="password" {...register("confirm")} />
 
                 <button type="submit">Cadastrar</button>
             </form>
