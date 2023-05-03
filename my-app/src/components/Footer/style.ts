@@ -7,8 +7,7 @@ height:310px;
 width: 100%;
 background-color:var(--grey-3);
 
-position: absolute;
-bottom: 0;
+
 
 display: flex;
 flex-direction: column;
