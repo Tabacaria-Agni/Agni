@@ -2,18 +2,21 @@ import  styled  from 'styled-components';
 
 export const StyledRegisterPage = styled.main`
 
-.registerLogo{
-    height: 500px;
-}
-
-.divContainer{
-    margin:20px;
-    margin-top:100px;
-    display: flex;
-    align-items: center;
-    justify-content: space-evenly;
-}
-
-
-
+    .registerLogo{
+        width: 500px;
+        height: 900px;
+        display: none;
+    }
+    @media(min-width:1260px){
+        .registerLogo{
+            display: flex;
+        }
+        .divContainer{
+            display: flex;
+            width: 90%;
+            margin-left: 5%;
+            justify-content: space-between;
+            align-items: center;
+        }   
+    }
 `

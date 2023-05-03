@@ -9,8 +9,8 @@ export const Footer = () => {
         <StyledFooter>
             <Link to="/" >Login</Link>
             <Link to="/register" >Cadastro</Link>
-            <Link to="/about" >Sobre nos</Link>
-            <Link to="/" >Politica e transparencia</Link>
+            <Link to="/about" >Sobre nós</Link>
+            <Link to="/" >Politica e transparência</Link>
            
             <p>Contatos: (48)93321-4343</p>
             <p>agniTabacaria@gmail.com</p>
