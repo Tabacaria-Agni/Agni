@@ -7,7 +7,7 @@ interface iUserContext{
 }
 
 interface iProviderPros{
-    children: React.ReactNode
+  children: React.ReactNode
 }
 
 export const UserProvider = ({children}: iProviderPros) => {
