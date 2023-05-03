@@ -35,19 +35,19 @@ export const RegisterForm = () =>{
             </div>
             <form onSubmit={handleSubmit(submit)}>
                 <label htmlFor="name">Nome</label>
-                <input placeholder="Insira seu nome" type="text" {...register("name")} />
+                <input placeholder={errors.name?.message || "Insira seu nome"} type="text" {...register("name")} />
 
                 <label htmlFor="email">E-mail</label>
-                <input placeholder="Insira seu email" type="text" {...register("email")} />
+                <input placeholder={errors.email?.message || "Insira seu email"} type="text" {...register("email")} />
 
                 <label htmlFor="date">Data de nascimento</label>
                 <input type="date" {...register("date")} />
 
                 <label htmlFor="password">Senha</label>
-                <input placeholder="Insira sua senha" type="password" {...register("password")} />
+                <input placeholder={errors.password?.message || "Insira sua senha"} type="password" {...register("password")} />
 
                 <label htmlFor="confirm">Confirme sua senha</label>
-                <input placeholder="Confirme sua senha" type="password" {...register("confirm")} />
+                <input placeholder={errors.confirm?.message || "Confirme sua senha"} type="password" {...register("confirm")} />
 
                 <button type="submit">Cadastrar</button>
             </form>
