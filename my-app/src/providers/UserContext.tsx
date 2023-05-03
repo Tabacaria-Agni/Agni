@@ -4,19 +4,23 @@ import { api } from "../services/api";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useNavigate } from "react-router-dom";
-interface IUser{
+import { TRegisterValues } from "../components/RegisterForm/registerFormSchema";
+
+
+interface iUser{
   email: string;
   name: string;
   id: number;
 }
 interface iUserContext{
-  user: IUser | null;
+  user: iUser | null;
   loginSubmit: (data: TLoginFormValue) => Promise<void>
+  registerSubmit: (formData: TRegisterValues) => Promise<void>
 }
 
 interface IUserLoginResponse{
   accessToken: string;
-  user: IUser;
+  user: iUser;
 }
 
 interface iProviderPros{
@@ -26,7 +30,7 @@ interface iProviderPros{
 export const UserContext = createContext({} as iUserContext)
 
 export const UserProvider = ({children}: iProviderPros) => {
-  const [user, setUser] = useState<IUser | null>(null)
+  const [user, setUser] = useState<iUser | null>(null)
   const navigate = useNavigate();
 
   const loginSubmit = async (data: TLoginFormValue) => {
@@ -45,9 +49,20 @@ export const UserProvider = ({children}: iProviderPros) => {
       localStorage.removeItem("@USERID");
     }
   }
+
+  const registerSubmit = async(formData: TRegisterValues) =>{
+    try {
+      const response = await api.post<iUser>("/users", formData)
+      navigate("/")
+      toast.success("Usuario registrado com sucesso", {autoClose:2500})
+    } catch (error) {   
+      toast.error("Ocorreu erro ao fazer cadastro", {autoClose:2500})
+      console.log(error)
+    }
+  }
   
     return (
-      <UserContext.Provider value={{user, loginSubmit}}>
+      <UserContext.Provider value={{user, loginSubmit, registerSubmit}}>
         {children}
       </UserContext.Provider>
     )
