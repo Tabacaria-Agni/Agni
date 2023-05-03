@@ -9,6 +9,7 @@ import { useNavigate } from "react-router-dom";
 import { Header } from "../../components/Header";
 import { Footer } from "../../components/Footer";
 import { StyledLoginPage } from "./style";
+import loginImg from "../../assets/loginImg.jpeg"
 
 export const LoginPage = () => {
     const {loginSubmit} = useContext(UserContext)
@@ -22,10 +23,14 @@ export const LoginPage = () => {
     }
 
     return(
-
         <>
             <Header />
                 <StyledLoginPage>
+
+                <div className="imgContainer">
+                    <img src={loginImg} alt="loginImg" className="loginImg"/>
+                </div>
+                <div className="divFormContainer">
                     <h2 className="loginTitle">Login</h2>
                     <form onSubmit={handleSubmit(submit)} className="formContainer">
                         <div className="divInputLogin">
@@ -42,8 +47,10 @@ export const LoginPage = () => {
                         <button className="buttonRegister" type="button" onClick={() => navigate("/register") }>Cadastrar</button>
                         
                     </form>
+                </div>
                     <ToastContainer theme="dark" />
                 </StyledLoginPage>
+
             <Footer />
         </>
 
