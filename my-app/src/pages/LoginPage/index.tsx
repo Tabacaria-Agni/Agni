@@ -8,6 +8,7 @@ import "react-toastify/dist/ReactToastify.css";
 import { useNavigate } from "react-router-dom";
 import { Header } from "../../components/Header";
 import { Footer } from "../../components/Footer";
+import { StyledLoginPage } from "./style";
 
 export const LoginPage = () => {
     const {loginSubmit} = useContext(UserContext)
@@ -24,7 +25,7 @@ export const LoginPage = () => {
 
         <>
             <Header />
-                <div className="bodyLoginPage">
+                <StyledLoginPage>
                     <h2 className="loginTitle">Login</h2>
                     <form onSubmit={handleSubmit(submit)} className="formContainer">
                         <div className="divInputLogin">
@@ -42,7 +43,7 @@ export const LoginPage = () => {
                         
                     </form>
                     <ToastContainer theme="dark" />
-                </div>
+                </StyledLoginPage>
             <Footer />
         </>
 

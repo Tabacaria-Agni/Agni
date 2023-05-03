@@ -3,31 +3,33 @@ import styled from 'styled-components';
 export const StyledFooter = styled.div`
 
 border-top: 1px solid var(--color-primary);
-height:80px;
-width:100%;
-
+height:310px;
+width: 100%;
 background-color:var(--grey-3);
 
 position: absolute;
-bottom:0;
+bottom: 0;
 
 display: flex;
+flex-direction: column;
 align-items: center;
 justify-content: space-evenly;
 align-content: center;
 
 color:var(--grey-1);
 
+font-style: normal;
+font-weight: 400;
+font-size: 16px;
+line-height: 19px;
+
 a{
     color:var(--grey-1);
     text-decoration: none;
 }
-
-div{
-    display: flex;
-    align-items: center;
-    justify-content: space-evenly;
-    align-content: center;
+@media(min-width:1000px){
+    height: 157px;
+    flex-direction: row;
 }
 
 `
