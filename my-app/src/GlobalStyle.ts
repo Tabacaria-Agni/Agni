@@ -9,6 +9,8 @@ export const GlobalStyle = createGlobalStyle`
     --grey-1: #D9D9D9;
     --grey-0: #F8F9FA;
 
+    --green: #668064;
+
 
 body{
     padding: 0px;
