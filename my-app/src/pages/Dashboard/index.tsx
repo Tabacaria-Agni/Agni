@@ -1,11 +1,13 @@
 import { useContext, useEffect, useState } from "react"
 import { useNavigate } from "react-router-dom"
+import { toast } from "react-toastify"
 import { CartProduct } from "../../components/CartProduct"
 import { Footer } from "../../components/Footer"
 import { Header } from "../../components/Header"
 import { LiProducts } from "../../components/LiProducts"
 import { CartContext } from "../../providers/CartContext"
 import { iProduct, ProductsContext } from "../../providers/ProductsContext"
+import { UserContext } from "../../providers/UserContext"
 import { StyledDashboardMain } from "./style"
 
 export interface iLiProductProps{
@@ -22,8 +24,8 @@ export const Dashboard = () => {
     const {products, populateProducts,categories, setCategories, valueInput, setValueInput, searchProducts, filteredArray, filteredCategories, setFilteredArray} = useContext(ProductsContext)
     const {cart, setCart} = useContext(CartContext)
     const {totalValue, setTotalValue} = useContext(CartContext)
+    const {logoutUser} = useContext(UserContext)
     const [modal, setModal] = useState(false)
-
 
     useEffect(() => {
         const token = localStorage.getItem("@TOKEN")
@@ -38,6 +40,7 @@ export const Dashboard = () => {
     const clearCart = () => {
         setTotalValue(0)
         setCart([])
+        toast.success("Carrinho limpo com sucesso", {autoClose:2500})
     }
 
     const filteredFunction = (value:any) =>{
@@ -48,6 +51,7 @@ export const Dashboard = () => {
     return(
         <StyledDashboardMain>
             <Header />
+            <button onClick={()=> logoutUser()} id="buttonLogout"><img src="logout.png"/></button>
             <span id="filterLabel">
                 <h3>Procura algo mais especifico?</h3>
                 <button onClick={()=> setModal(true)} className="buttonCart"><img src="CartLogo.png" /></button>

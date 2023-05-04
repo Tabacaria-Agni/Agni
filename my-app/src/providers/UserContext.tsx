@@ -16,6 +16,7 @@ interface iUserContext{
   user: iUser | null;
   loginSubmit: (data: TLoginFormValue) => Promise<void>
   registerSubmit: (formData: TRegisterValues) => Promise<void>
+  logoutUser: () => void
 }
 
 interface IUserLoginResponse{
@@ -62,9 +63,15 @@ export const UserProvider = ({children}: iProviderPros) => {
       console.log(error)
     }
   }
+
+  const logoutUser = () =>{
+    localStorage.clear()
+    navigate("/")
+    toast.success("Voce fez logout", {autoClose:2500})
+  }
   
     return (
-      <UserContext.Provider value={{user, loginSubmit, registerSubmit}}>
+      <UserContext.Provider value={{user, loginSubmit, registerSubmit, logoutUser}}>
         {children}
       </UserContext.Provider>
     )
