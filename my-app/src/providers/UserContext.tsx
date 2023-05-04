@@ -53,8 +53,10 @@ export const UserProvider = ({children}: iProviderPros) => {
   const registerSubmit = async(formData: TRegisterValues) =>{
     try {
       const response = await api.post<iUser>("/users", formData)
-      navigate("/")
       toast.success("Usuario registrado com sucesso", {autoClose:2500})
+      setTimeout(() => {
+        navigate("/");
+      }, 2500);
     } catch (error) {   
       toast.error("Ocorreu erro ao fazer cadastro", {autoClose:2500})
       console.log(error)
