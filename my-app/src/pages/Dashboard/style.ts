@@ -7,6 +7,109 @@ export const StyledDashboardMain = styled.main`
     justify-content: space-between;
 }
 
+#productsLabel > input{
+    margin-right:20px;
+    padding:0.5rem 1rem;
+    border-radius:5px;
+    outline:none;
+
+    border:2px solid var(--color-primary);
+}
+
+#filterLabel{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding:15px;
+}
+
+.divFilters{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    gap:5px;
+
+    overflow-x: scroll;
+
+    ::-webkit-scrollbar {
+    height: 3px;
+    }
+    ::-webkit-scrollbar-thumb {
+    background: var(--color-primary);
+    }
+
+    border: 2px solid var(--color-primary);
+
+    margin: 20px;
+    padding: 10px;
+}
+
+.divFilters button{
+    background-color: var(--grey-3);
+    color:var(--grey-0);
+
+    border: 2px solid var(--grey-3);
+    border-radius:5px;
+
+    cursor: pointer;
+
+    min-width:120px;
+    min-height:120px;
+
+    padding: 0.6rem 1.2rem;
+
+    transition:0.6s;
+
+    :hover{
+        border: 2px solid var(--color-primary);
+    }
+}
+
+#readyToUse{
+    background-image: url("Narguile.png");
+}
+
+#body{
+    background-image: url("corpoNargs.png");
+}
+
+#hose{
+    background-image: url("mangueira.png");
+}
+
+#vase{
+    background-image: url("vaso.png");
+}
+
+#rosh{
+    background-image: url("Rosh.png");
+}
+
+#plate{
+    background-image: url("pratosNargs.png");
+}
+
+#essence{
+    background-image: url("essencia.png");
+}
+
+#accessories{
+    background-image: url("acessorios.png");
+}
+
+#clear{
+    background-image: url("clear.png");
+}
+
+
+.center{
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 100px 100px;
+}
+
 .productList{
     display: grid;
     grid-template-columns: 20% 20% 20% 20%;
@@ -19,6 +122,33 @@ export const StyledDashboardMain = styled.main`
 
     border: 2px solid var(--color-primary);
     margin:20px;
+
+    ::-webkit-scrollbar {
+    width: 3px;
+    }
+    ::-webkit-scrollbar-thumb {
+    background: var(--color-primary);
+    }
+    
+}
+
+@media(max-width:1200px){
+    .productList{
+        grid-template-columns: 1fr 1fr 1fr;
+        justify-items: center;
+    }
+}
+
+@media(max-width:650px){
+    .productList{
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+@media(max-width:450px){
+    .productList{
+        grid-template-columns: 1fr;
+    }
 }
 
 h2{

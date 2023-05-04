@@ -37,4 +37,15 @@ button{
     font-weight:bold;
 }
 
+@media(max-width:1200px){
+    width: 20vw;
+}
+
+@media(max-width:650px){
+    width:30vw;
+}
+@media(max-width:450px){
+    width:45vw;
+}
+
 `
