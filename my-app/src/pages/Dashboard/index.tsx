@@ -19,7 +19,7 @@ export interface iLiProductProps{
 
 export const Dashboard = () => {
     const navigate = useNavigate()
-    const {products, populateProducts} = useContext(ProductsContext)
+    const {products, populateProducts,categories, setCategories, valueInput, setValueInput, searchProducts, filteredArray, filteredCategories, setFilteredArray} = useContext(ProductsContext)
     const {cart, setCart} = useContext(CartContext)
     const {totalValue, setTotalValue} = useContext(CartContext)
     const [modal, setModal] = useState(false)
@@ -40,25 +40,48 @@ export const Dashboard = () => {
         setCart([])
     }
 
+    const filteredFunction = (value:any) =>{
+        filteredCategories(value.target.id)
+    }
+
 
     return(
         <StyledDashboardMain>
             <Header />
+            <span id="filterLabel">
+                <h3>Procura algo mais especifico?</h3>
+                <button onClick={()=> setModal(true)} className="buttonCart"><img src="CartLogo.png" /></button>
+            </span>
 
+            <div className="divFilters">
+                <button onClick={()=> setFilteredArray([])} className="center" id="clear"></button>
+                <button id="readyToUse" onClick={(event)=> filteredFunction(event)} className="center"></button>
+                <button id="body" onClick={(event)=> filteredFunction(event)} className="center"></button>
+                <button id="hose" onClick={(event)=> filteredFunction(event)} className="center"></button>
+                <button id="vase" onClick={(event)=> filteredFunction(event)} className="center"></button>
+                <button id="rosh" onClick={(event)=> filteredFunction(event)} className="center"></button>
+                <button id="plate" onClick={(event)=> filteredFunction(event)} className="center"></button>
+                <button id="essence" onClick={(event)=> filteredFunction(event)} className="center"></button>
+                <button id="accessories" onClick={(event)=> filteredFunction(event)} className="center"></button>
+            </div>
 
             <span id="productsLabel">
                 <h2>Produtos</h2>
-                <button onClick={()=> setModal(true)} className="buttonCart"><img src="CartLogo.png" /></button>
+                <input placeholder="Pesquise por um produto..." onChange={(event)=> searchProducts(event?.target.value)} type="text" />
             </span>
             <ul className="productList">
                 {
-                    products ? products.map((item) =>{
+                    filteredArray.length ? filteredArray.map((item)=>{
                         return(
                             <LiProducts key={item.id} item={item} id={item.id} name={item.name} price={item.price} image={item.image} category={item.category} />
                         )
                     })
                     :
-                    <></>
+                    products.map((item)=>{
+                        return(
+                            <LiProducts key={item.id} item={item} id={item.id} name={item.name} price={item.price} image={item.image} category={item.category} />
+                        )
+                    })
                 }
             </ul>
             <Footer />
