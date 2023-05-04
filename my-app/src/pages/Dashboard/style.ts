@@ -1,6 +1,7 @@
 import  styled  from 'styled-components';
-export const StyledDashboardMain = styled.main`
 
+
+export const StyledDashboardMain = styled.main`
 #buttonLogout{
     background-color:transparent;
     border:none;
@@ -21,25 +22,41 @@ export const StyledDashboardMain = styled.main`
 
 #productsLabel{
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     justify-content: space-between;
+    flex-direction: column;
+    width: 90%;
+    margin-left: 5%;
+}
+.titleProductsLabel{
+    font-style: normal;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 24px;
+    color: #CDB587;
 }
 
 #productsLabel > input{
-    margin-right:20px;
     padding:0.5rem 1rem;
     border-radius:5px;
     outline:none;
-
-    border:2px solid var(--color-primary);
+    background: #D9D9D9;
+    border-radius: 10px;
+    width: 85%;
 }
 
 #filterLabel{
     display: flex;
     align-items: center;
     justify-content: space-between;
-
     padding:15px;
+}
+.titleFilterLabel{
+    font-style: normal;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 24px;
+    color: #CDB587;
 }
 
 .divFilters{
@@ -52,24 +69,25 @@ export const StyledDashboardMain = styled.main`
     overflow-x: scroll;
 
     ::-webkit-scrollbar {
-    height: 3px;
+    height: 1px;
     }
     ::-webkit-scrollbar-thumb {
     background: var(--color-primary);
     }
 
-    border: 2px solid var(--color-primary);
+    border-top: 1px solid var(--color-primary);
+    border-bottom: 1px solid var(--color-primary);
 
     margin: 20px;
     padding: 10px;
 }
 
 .divFilters button{
-    background-color: var(--grey-3);
+    background-color: transparent;
     color:var(--grey-0);
 
-    border: 2px solid var(--grey-3);
-    border-radius:5px;
+    border: none;
+    border-radius:50%;
 
     cursor: pointer;
 
@@ -84,7 +102,9 @@ export const StyledDashboardMain = styled.main`
         border: 2px solid var(--color-primary);
     }
 }
-
+.divFilters button:hover{
+    border: 1px solid #757586;
+}
 #readyToUse{
     background-image: url("Narguile.png");
 }
@@ -135,14 +155,14 @@ export const StyledDashboardMain = styled.main`
     max-height: 400px;
     justify-content: center;
     align-items: center;
-
+    background-image: url();
     list-style:none;
 
-    border: 2px solid var(--color-primary);
+    border: 1px solid var(--color-primary);
     margin:20px;
 
     ::-webkit-scrollbar {
-    width: 3px;
+    width: 1px;
     }
     ::-webkit-scrollbar-thumb {
     background: var(--color-primary);
@@ -169,9 +189,7 @@ export const StyledDashboardMain = styled.main`
     }
 }
 
-h2{
-    margin-left:20px;
-}
+
 
 .buttonCart{
     width:50px;
