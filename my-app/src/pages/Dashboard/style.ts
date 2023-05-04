@@ -1,6 +1,24 @@
 import  styled  from 'styled-components';
 export const StyledDashboardMain = styled.main`
 
+#buttonLogout{
+    background-color:transparent;
+    border:none;
+
+    position:absolute;
+    top:80px;
+    right:40px;
+}
+
+@media(max-width:1000px){
+    #buttonLogout{
+        top:30px;
+        right:0px;
+
+
+    }
+}
+
 #productsLabel{
     display: flex;
     align-items: center;
