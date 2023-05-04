@@ -1,7 +1,109 @@
+import { useContext, useEffect, useState } from "react"
+import { useNavigate } from "react-router-dom"
+import { CartProduct } from "../../components/CartProduct"
+import { Footer } from "../../components/Footer"
+import { Header } from "../../components/Header"
+import { LiProducts } from "../../components/LiProducts"
+import { CartContext } from "../../providers/CartContext"
+import { iProduct, ProductsContext } from "../../providers/ProductsContext"
+import { StyledDashboardMain } from "./style"
+
+export interface iLiProductProps{
+    item: iProduct
+    id: number
+    name: string
+    price: number
+    image: string
+    category: string
+}
+
 export const Dashboard = () => {
+    const navigate = useNavigate()
+    const {products, populateProducts} = useContext(ProductsContext)
+    const {cart, setCart} = useContext(CartContext)
+    const {totalValue, setTotalValue} = useContext(CartContext)
+    const [modal, setModal] = useState(false)
+
+
+    useEffect(() => {
+        const token = localStorage.getItem("@TOKEN")
+        if(!token){
+            navigate("/")
+        }
+        else if(token){
+            populateProducts()
+        }
+    },[])
+
+    const clearCart = () => {
+        setTotalValue(0)
+        setCart([])
+    }
+
 
     return(
-        <>
-        </>
+        <StyledDashboardMain>
+            <Header />
+
+
+            <span id="productsLabel">
+                <h2>Produtos</h2>
+                <button onClick={()=> setModal(true)} className="buttonCart"><img src="CartLogo.png" /></button>
+            </span>
+            <ul className="productList">
+                {
+                    products ? products.map((item) =>{
+                        return(
+                            <LiProducts key={item.id} item={item} id={item.id} name={item.name} price={item.price} image={item.image} category={item.category} />
+                        )
+                    })
+                    :
+                    <></>
+                }
+            </ul>
+            <Footer />
+            {
+                modal ? (
+                    <div id="divContainer">
+                    <div id="overlay"></div>
+                    <div id="modalContainer">
+                        <header id="headerModal">
+                            <h3>Carrinho</h3>
+                            <button onClick={() => setModal(false)} className="modalClose">x</button>
+                        </header>
+                        <div>
+                        {
+                            cart.length ? cart.map((item) =>{
+                                return(
+                                    <CartProduct item={item} image={item.image} name={item.name} />
+                                )
+                            })
+                            :
+                            <div id="cartEmpty">
+                                <h3>Sacola Vazia</h3>
+                                <p>Adicione itens</p>
+                            </div>
+                        }
+                        </div>
+                        {
+                            cart.length ? 
+                            <>
+                                <span className="spanTotalValue">
+                                    <p>Total</p>
+                                    <p>R${totalValue}</p>
+                                </span>
+                                <button onClick={()=> clearCart()} className="cartClear">Remover Todos</button>
+                            </>
+                            :
+                            <></>
+                        }
+                    </div>
+                    
+                </div>
+                )
+                :
+                <></>
+            }
+        </StyledDashboardMain>
     )
 }
