@@ -3,7 +3,6 @@ export const StyledCartProduct = styled.div`
 display: flex;
 justify-content: space-between;
 align-items: center;
-
 background-color:var(--grey-1);
 color:var(--grey-3);
 
@@ -11,6 +10,7 @@ border-radius:5px;
 
 padding:5px;
 margin:5px;
+
 
 img{
     width:60px;

@@ -53,7 +53,7 @@ export const Dashboard = () => {
             <Header />
             <button onClick={()=> logoutUser()} id="buttonLogout"><img src="logout.png"/></button>
             <span id="filterLabel">
-                <h3>Procura algo mais especifico?</h3>
+                <h3 className="titleFilterLabel">Procura algo mais especifico?</h3>
                 <button onClick={()=> setModal(true)} className="buttonCart"><img src="CartLogo.png" /></button>
             </span>
 
@@ -70,10 +70,11 @@ export const Dashboard = () => {
             </div>
 
             <span id="productsLabel">
-                <h2>Produtos</h2>
+                <h2 className="titleProductsLabel">Produtos</h2>
                 <input placeholder="Pesquise por um produto..." onChange={(event)=> searchProducts(event?.target.value)} type="text" />
             </span>
             <ul className="productList">
+              
                 {
                     filteredArray.length ? filteredArray.map((item)=>{
                         return(
@@ -95,10 +96,10 @@ export const Dashboard = () => {
                     <div id="overlay"></div>
                     <div id="modalContainer">
                         <header id="headerModal">
-                            <h3>Carrinho</h3>
+                            <h3 className="headerTitleModal">Carrinho</h3>
                             <button onClick={() => setModal(false)} className="modalClose">x</button>
                         </header>
-                        <div>
+                        <div className="cartContainer">
                         {
                             cart.length ? cart.map((item) =>{
                                 return(
@@ -116,8 +117,8 @@ export const Dashboard = () => {
                             cart.length ? 
                             <>
                                 <span className="spanTotalValue">
-                                    <p>Total</p>
-                                    <p>R${totalValue}</p>
+                                    <p className="TitleTotalValue">Total</p>
+                                    <p className="totalValue">R${totalValue}</p>
                                 </span>
                                 <button onClick={()=> clearCart()} className="cartClear">Remover Todos</button>
                             </>
