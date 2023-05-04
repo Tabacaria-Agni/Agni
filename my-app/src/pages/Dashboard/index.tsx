@@ -74,6 +74,7 @@ export const Dashboard = () => {
                 <input placeholder="Pesquise por um produto..." onChange={(event)=> searchProducts(event?.target.value)} type="text" />
             </span>
             <ul className="productList">
+              
                 {
                     filteredArray.length ? filteredArray.map((item)=>{
                         return(
@@ -95,10 +96,10 @@ export const Dashboard = () => {
                     <div id="overlay"></div>
                     <div id="modalContainer">
                         <header id="headerModal">
-                            <h3>Carrinho</h3>
+                            <h3 className="headerTitleModal">Carrinho</h3>
                             <button onClick={() => setModal(false)} className="modalClose">x</button>
                         </header>
-                        <div>
+                        <div className="cartContainer">
                         {
                             cart.length ? cart.map((item) =>{
                                 return(
@@ -116,8 +117,8 @@ export const Dashboard = () => {
                             cart.length ? 
                             <>
                                 <span className="spanTotalValue">
-                                    <p>Total</p>
-                                    <p>R${totalValue}</p>
+                                    <p className="TitleTotalValue">Total</p>
+                                    <p className="totalValue">R${totalValue}</p>
                                 </span>
                                 <button onClick={()=> clearCart()} className="cartClear">Remover Todos</button>
                             </>
