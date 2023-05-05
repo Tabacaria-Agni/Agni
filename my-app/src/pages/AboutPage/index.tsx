@@ -10,7 +10,7 @@ export const AboutPage = () =>{
     return(
         <StyledAboutPage>
             <Header />
-                <main>
+                <main >
                     <StyledSectionHeader>
                         <StyledDivFirst>
                             <h2>Qual o nosso foco ?</h2>
