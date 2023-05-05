@@ -43,7 +43,7 @@ export const StyledLoginPage = styled.div`
         color: #373737;
     }
     .inputLogin{
-        width: 99%;
+        width: 96%;
         height: 60px;
         background: transparent;
         border: 1px solid #373737;
@@ -51,6 +51,7 @@ export const StyledLoginPage = styled.div`
         font-style: normal;
         font-weight: bold;
         font-size: 16px;
+        padding-left: 12px;
         line-height: 19px;
         color: #373737;
         cursor: pointer;
@@ -107,7 +108,7 @@ export const StyledLoginPage = styled.div`
         margin-left: 10%;
         justify-content: space-between;
         position: relative;
-        height: 100%;
+        height: 865px;
         .divFormContainer{
             width: 500px;
             height: 630px;

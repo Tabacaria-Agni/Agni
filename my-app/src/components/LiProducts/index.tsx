@@ -1,4 +1,5 @@
 import { useContext } from "react"
+import { toast } from "react-toastify"
 import { iLiProductProps } from "../../pages/Dashboard"
 import { CartContext } from "../../providers/CartContext"
 import { iProduct } from "../../providers/ProductsContext"
@@ -10,6 +11,7 @@ export const LiProducts = ({item, category, id, image, name, price}:iLiProductPr
     const {totalValue, setTotalValue} = useContext(CartContext)
 
     const addCart = (itemParam:iProduct) => {
+        toast.success(`${itemParam.name} adicionado ao carrinho`, {autoClose:1500})
         setCart([...cart, itemParam])
         setTotalValue(totalValue + itemParam.price)
     }
