@@ -1,4 +1,5 @@
 import { useContext } from "react"
+import { toast } from "react-toastify"
 import { CartContext } from "../../providers/CartContext"
 import { iProduct } from "../../providers/ProductsContext"
 import { StyledCartProduct } from "./style"
@@ -17,6 +18,7 @@ export const CartProduct = ({item, image, name}:iCartProductProps) => {
         const arrayFilter = cart.filter((cartItem) => cartItem.id != itemParam.id)
         setCart(arrayFilter)
         setTotalValue(totalValue - itemParam.price)
+        toast.success(`${itemParam.name} removido do carrinho`, {autoClose:1500})
     }
 
     return(

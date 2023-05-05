@@ -1,9 +1,9 @@
-import { createContext, useState } from "react";
+import { createContext, useEffect, useState } from "react";
 import { TLoginFormValue } from "../schema/loginSchema";
 import { api } from "../services/api";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { useNavigate } from "react-router-dom";
+import { Navigate, useNavigate } from "react-router-dom";
 import { TRegisterValues } from "../components/RegisterForm/registerFormSchema";
 
 
@@ -16,6 +16,9 @@ interface iUserContext{
   user: iUser | null;
   loginSubmit: (data: TLoginFormValue) => Promise<void>
   registerSubmit: (formData: TRegisterValues) => Promise<void>
+  logoutUser: () => void
+  setMesage: React.Dispatch<React.SetStateAction<boolean>>;
+  mesage: boolean;
 }
 
 interface IUserLoginResponse{
@@ -30,10 +33,31 @@ interface iProviderPros{
 export const UserContext = createContext({} as iUserContext)
 
 export const UserProvider = ({children}: iProviderPros) => {
+  const [mesage, setMesage] = useState(true)
   const [user, setUser] = useState<iUser | null>(null)
   const navigate = useNavigate();
 
+
+  useEffect(() => {
+    const token = localStorage.getItem("@TOKEN")
+    const id = localStorage.getItem("@USERID")
+    setMesage(true)
+    const userAutoLogin = () => {
+      if(!token){
+        navigate("/")
+      }
+      setTimeout(()=>{
+        navigate("/dashboard")
+        setMesage(false)
+      }, 2500)
+      
+    }
+    userAutoLogin()
+    
+  }, [])
+
   const loginSubmit = async (data: TLoginFormValue) => {
+    setMesage(true)
     try {
       const response = await api.post<IUserLoginResponse>("/login", data)
       localStorage.setItem("@TOKEN", response.data.accessToken);
@@ -47,6 +71,8 @@ export const UserProvider = ({children}: iProviderPros) => {
       toast.error("Erro ao efetuar o login!", { autoClose: 2500 });
       localStorage.removeItem("@TOKEN");
       localStorage.removeItem("@USERID");
+    }finally{
+      setMesage(false)
     }
   }
 
@@ -62,9 +88,15 @@ export const UserProvider = ({children}: iProviderPros) => {
       console.log(error)
     }
   }
+
+  const logoutUser = () =>{
+    localStorage.clear()
+    navigate("/")
+    toast.success("Voce fez logout", {autoClose:2500})
+  }
   
     return (
-      <UserContext.Provider value={{user, loginSubmit, registerSubmit}}>
+      <UserContext.Provider value={{user,mesage,setMesage, loginSubmit, registerSubmit, logoutUser, }}>
         {children}
       </UserContext.Provider>
     )
