@@ -24,7 +24,7 @@ export const Dashboard = () => {
     const {products, populateProducts,categories, setCategories, valueInput, setValueInput, searchProducts, filteredArray, filteredCategories, setFilteredArray} = useContext(ProductsContext)
     const {cart, setCart} = useContext(CartContext)
     const {totalValue, setTotalValue} = useContext(CartContext)
-    const {logoutUser} = useContext(UserContext)
+    const {logoutUser, setMesage} = useContext(UserContext)
     const [modal, setModal] = useState(false)
 
     useEffect(() => {
@@ -34,6 +34,7 @@ export const Dashboard = () => {
         }
         else if(token){
             populateProducts()
+            setMesage(false)
         }
     },[])
 
