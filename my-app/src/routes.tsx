@@ -11,7 +11,6 @@ const Router = () => {
     <Routes>
         <Route path='/' element={<LoginPage/>}/>
         <Route path='/register' element={<RegisterPage/>}/>
-        <Route path='/dashboard' element={<Dashboard/>}/>
         <Route path='/politica' element={<Politicapage/>}/>
         <Route element={<ProtectedRoutes/>}>
           <Route path='/dashboard' element={
