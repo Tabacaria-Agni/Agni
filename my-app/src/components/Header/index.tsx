@@ -3,8 +3,10 @@ import { StyledHeader } from "./style"
 export const Header = () =>{
     return(
         <StyledHeader>
-            <img src="AgniLogo.png" alt="" />
-            <h1>Tabacaria Agni</h1>
+            <div className="containerHeader">
+                <img src="AgniLogo.png" alt="" />
+                <h1>Tabacaria Agni</h1>
+            </div>
         </StyledHeader>
     )
 }
